@@ -1,16 +1,16 @@
 <template>
-  <NewArtisanForm />
+  <NewDemandForm />
 </template>
 
 <script>
 // @ is an alias to /src
-import NewArtisanForm from "@/components/NewArtisanForm.vue";
+import NewDemandForm from "@/components/NewDemandForm.vue";
 // import axios from "axios";
 
 export default {
-  name: "FormArtisan",
+  name: "FormDemand",
   components: {
-    NewArtisanForm,
+    NewDemandForm,
   },
 };
 </script>

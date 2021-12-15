@@ -1,5 +1,7 @@
 <template>
-  <button>Ajout nouvelle demande</button>
+  <button @click="newDemand()">
+    <i class="fas fa-plus"></i> Nouvelle demande
+  </button>
   <br />
   <table>
     <thead>
@@ -23,6 +25,15 @@
         <td>with two columns</td>
         <td>with two columns</td>
       </tr>
+      <tr>
+        <td>The table body</td>
+        <td>with two columns</td>
+        <td>with two columns</td>
+        <td>with two columns</td>
+        <td>with two columns</td>
+        <td>with two columns</td>
+        <td>with two columns</td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -33,19 +44,13 @@ export default {
   props: {
     msg: String,
   },
+  methods: {
+    newDemand() {
+      this.$router.push("/form_demand");
+    },
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-table,
-td {
-  border: 1px solid #333;
-}
 
-thead,
-tfoot {
-  background-color: #333;
-  color: #fff;
-}
-</style>
