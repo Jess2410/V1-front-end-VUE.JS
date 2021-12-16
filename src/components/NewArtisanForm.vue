@@ -91,13 +91,17 @@ export default {
         comment: this.comment,
       };
       console.log("1");
-      const response = await axios.post("http://localhost/artisan", body);
-      console.log("2");
-      if (response.data === "success") {
+      const response = await axios.post(
+        "http://127.0.0.1:8001/api/artisan",
+        body
+      );
+
+      if (response) {
         const redirect_url = "/";
         this.$router.push(redirect_url);
+      } else {
+        alert("Votre requète n'a pas été pris en compte");
       }
-      console.log("3");
     },
   },
 
@@ -177,4 +181,3 @@ export default {
   border-radius: 5px;
 }
 </style>
-
