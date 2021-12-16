@@ -1,20 +1,26 @@
 <template>
-  <form class="form-style-9" @submit="createNewDemand()">
+  <form class="form-style-9" @submit="createNewArtisan()">
     <h3>Création d'une nouvelle demande</h3>
     <ul>
-      <input type="hidden" placeholder="id" />
-      <fieldset>
-        <legend>Information de la demande</legend>
-        <li>
+      <li>
+        <input type="hidden" placeholder="id" />
+        <div class="part1">
+          <p class="part-title">Information de la demande</p>
           <input
             type="text"
             name="field1"
-            class="field-style field-full"
+            class="field-style field-split align-left"
             placeholder="Titre"
           />
-        </li>
-        <li>
-          <select id="statut" class="field-style field-full">
+
+          <input
+            type="date"
+            name="field2"
+            class="field-style field-split align-right"
+            placeholder="Date"
+          />
+
+          <select id="statut">
             <option value="0">0 - Demande annulée</option>
             <option value="1" selected>1 - Attente acceptation artisan</option>
             <option value="2">2 - Attente de réception devis</option>
@@ -24,112 +30,65 @@
             <option value="6">6 - Travaux réalisés</option>
             <option value="7">7 - Travaux annulés</option>
           </select>
-        </li>
-
-        <li>
-          <input
-            type="text"
-            name="field4"
-            class="field-style field-split align-left"
-            placeholder="Description"
-          />
-
-          <input
-            type="text"
-            name="field4"
-            class="field-style field-split align-right"
-            placeholder="Adresse des Travaux"
-          />
-        </li>
-        <li>
-          <input
-            type="date"
-            name="field3"
-            class="field-style field-split align-left"
-            placeholder="Date début travaux"
-          />
-
-          <input
-            type="date"
-            name="field4"
-            class="field-style field-split align-right"
-            placeholder="Date fin travaux"
-          />
-        </li>
-      </fieldset>
-    </ul>
-
-    <!-- <input
+        </div>
+        <!-- <input
           type="text"
           name="field3"
           class="field-style field-split align-left"
           placeholder="Statut"
         /> -->
+        <p class="part-title">Information du client</p>
 
-    <fieldset>
-      <legend class="part-title">Information du client</legend>
+        <div class="part2">
+          <div>
+            <input
+              type="radio"
+              id="particulier"
+              name="client"
+              value="Particulier"
+              checked
+            />
+            <label for="particulier">Particulier</label>
 
-      <input
-        type="radio"
-        id="particulier"
-        name="client"
-        value="Particulier"
-        checked
-      />
-      <label for="particulier">Particulier</label>
+            <input
+              type="radio"
+              id="Entreprise"
+              name="client"
+              value="Entreprise"
+            />
+            <label for="entreprise">Entreprise</label>
+          </div>
 
-      <input type="radio" id="Entreprise" name="client" value="Entreprise" />
-      <label for="entreprise">Entreprise</label>
-      <ul>
-        <li>
           <input
             type="text"
-            name="field1"
-            class="field-style field-split align-left"
-            placeholder="Nom"
-          />
-          <input
-            type="text"
-            name="field2 "
+            name="field4"
             class="field-style field-split align-right"
-            placeholder="Prénom"
+            placeholder="Description"
           />
-        </li>
-        <li>
+
           <input
             type="text"
             name="field3"
-            class="field-style field-split align-left"
-            placeholder="Raison Sociale"
+            class="field-style field-full align-none"
+            placeholder="Particulier ou Entreprise - reste à mettre autres inputs"
           />
-          <input
-            type="text"
-            name="field3"
-            class="field-style field-split align-right"
-            placeholder="Siren"
-          />
-        </li>
-        <li>
-          <input
-            type="text"
-            name="field3"
-            class="field-style field-split align-left"
-            placeholder="Téléphone"
-          />
-          <input
-            type="text"
-            name="field3"
-            class="field-style field-split align-right"
-            placeholder="Adresse"
-          />
-        </li>
-        <li>
-          <input type="file" value="Joindre Photos" />
-        </li>
-      </ul>
-    </fieldset>
-    <br />
-    <input type="submit" value="Enregistrer" class="submit" />
+        </div>
+      </li>
+
+      <li>
+        <textarea
+          name="field5"
+          class="field-style"
+          placeholder="Commentaire"
+        ></textarea>
+      </li>
+      <li>
+        <input type="file" value="Joindre Photos" />
+      </li>
+      <li>
+        <input type="submit" value="Enregistrer" />
+      </li>
+    </ul>
   </form>
 </template>
 
@@ -274,23 +233,29 @@ export default {
   background-color: #0877df;
   border-radius: 5px;
 }
-fieldset {
+.part1,
+.part2 {
+  background-color: white;
   border-radius: 5px;
+  height: 5rem;
   padding: 20px;
+  position: relative;
   border: #0877df 1px solid;
 }
-
-legend {
+.part1 .part-title,
+.part2 .part-title {
+  position: absolute;
+  font-size: 15px;
+  top: -30px;
+  background-color: white;
+}
+.part1 p {
   padding: 5px;
   color: #0877df;
 }
-.submit {
-  border-radius: 5px;
-  box-shadow: #f8f8f8 5px 5px 5px;
-  padding: 1em;
-  background-color: #0877df;
-  color: white;
-  border: 0;
-  font-weight: bold;
+
+.part2 p {
+  padding: 5px;
+  color: #0877df;
 }
 </style>

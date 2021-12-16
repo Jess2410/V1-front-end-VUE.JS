@@ -1,49 +1,55 @@
 <template>
-  <form class="form-style-9" @submit="createNewArtisan()">
+  <form class="form-style-9" @submit.prevent="createNewArtisan()">
     <h3>Création d'un nouvel artisan</h3>
     <ul>
       <li>
-        <input type="hidden" placeholder="id" />
+        <!-- <input type="hidden" placeholder="id" /> -->
         <input
           type="text"
-          name="field1"
+          name="nameRS"
           class="field-style field-split align-left"
           placeholder="Raison Sociale"
+          v-model="nameRS"
+        />
+        <input
+          type="text"
+          name="adresse"
+          class="field-style field-split align-right"
+          placeholder="Adresse"
+          v-model="adresse"
+        />
+      </li>
+      <li>
+        <input
+          type="number"
+          name="siren"
+          class="field-style field-split align-left"
+          placeholder="Siren"
+          v-model="siren"
         />
         <input
           type="email"
-          name="field2"
-          class="field-style field-split align-right"
-          placeholder="Adresse"
-        />
-      </li>
-      <li>
-        <input
-          type="text"
-          name="field3"
-          class="field-style field-split align-left"
-          placeholder="Siren"
-        />
-        <input
-          type="url"
-          name="field4"
+          name="email"
           class="field-style field-split align-right"
           placeholder="Email"
+          v-model="email"
         />
       </li>
       <li>
         <input
-          type="text"
-          name="field3"
+          type="number"
+          name="tel"
           class="field-style field-full align-none"
           placeholder="Téléphone"
+          v-model="tel"
         />
       </li>
       <li>
         <textarea
-          name="field5"
+          name="comment"
           class="field-style"
           placeholder="Commentaire"
+          v-model="comment"
         ></textarea>
       </li>
       <li>
@@ -63,67 +69,41 @@ export default {
   components: {},
   data: function () {
     return {
-      id: "",
-      raisonSociale: "",
+      // id: "",
+      nameRS: "",
       adresse: "",
       siren: "",
       email: "",
-      telephone: "",
-      commentaire: "",
+      tel: "",
+      comment: "",
     };
   },
   methods: {
     //------------------------envoi validation formulaire Nouvel Artisan------------------------
-    // CreateNewArtisan: async function () {
-    //   const body = {
-    //     // id=this.id,
-    //     raisonSociale: this.raisonSociale,
-    //     adresse: this.adresse,
-    //     siren: this.siren,
-    //     email: this.email,
-    //     telephone: this.telephone,
-    //     commentaire: this.commentaire,
-    //   };
-    //   console.log(body);
-    //   const response = await axios.post(
-    //     "https://localhost:8000/club/new",
-    //     body
-    //   );
-    //   if (response.data === "Success") {
-    //     const redirect_url = "/";
-    //     this.$router.push(redirect_url);
-    //   }
-    // },
-  },
-  // -----------------------envoi validation formulaire Particulier---------------
-
-  CreateParticulierAcount: async function () {
-    if (this.passParticulier !== this.confirmePassParticulier) {
-      console.log("create ok");
-      alert("veuillez saisir un mot de passe identique");
-    } else {
+    createNewArtisan: async function () {
       const body = {
-        nomParticulier: this.nomParticulier,
-        emailParticulier: this.emailParticulier,
-        passParticulier: this.passParticulier,
-        confirmePassParticulier: this.confirmePassParticulier,
-        codeParrainage: this.codeParrainage,
+        // id=this.id,
+        nameRS: this.nameRS,
+        adresse: this.adresse,
+        siren: this.siren,
+        email: this.email,
+        tel: this.tel,
+        comment: this.comment,
       };
-      console.log("create ok");
-      const response = await axios.post(
-        "https://localhost:8000/user/new",
-        body
-      );
-
-      if (response.data === "Success") {
+      console.log("1");
+      const response = await axios.post("http://localhost/artisan", body);
+      console.log("2");
+      if (response.data === "success") {
         const redirect_url = "/";
         this.$router.push(redirect_url);
       }
-    }
+      console.log("3");
+    },
   },
-  myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  },
+
+  // myFunction() {
+  //   document.getElementById("myDropdown").classList.toggle("show");
+  // },
 };
 </script>
 
