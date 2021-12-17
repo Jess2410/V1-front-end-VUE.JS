@@ -16,32 +16,42 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>The table body</td>
-        <td>with two columns</td>
-        <td>with two columns</td>
-        <td>with two columns</td>
-        <td>with two columns</td>
-        <td>with two columns</td>
-        <td>with two columns</td>
+      <tr :key="key" v-for="(el, key) in artisans">
+        <td>{{ el.id }}</td>
+        <td>{{ el.nameRS }}</td>
+        <td>{{ el.adresse }}</td>
+        <td>{{ el.siren }}</td>
+        <td>{{ el.email }}</td>
+        <td>{{ el.tel }}</td>
+        <td>{{ el.comment }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "CompListeArtisans",
   props: {},
+  data() {
+    return {
+      artisans: [],
+    };
+  },
 
   methods: {
     newArtisan() {
       this.$router.push("/form_artisan");
     },
   },
+  async mounted() {
+    axios
+      .get("http://127.0.0.1:8000/api/artisan")
+      .then((response) => (this.artisans = response.data));
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

@@ -90,14 +90,14 @@ export default {
         tel: this.tel,
         comment: this.comment,
       };
-      console.log("1");
+
       const response = await axios.post(
-        "http://127.0.0.1:8001/api/artisan",
+        "http://127.0.0.1:8000/api/artisan",
         body
       );
 
       if (response) {
-        const redirect_url = "/";
+        const redirect_url = "/list_artisans";
         this.$router.push(redirect_url);
       } else {
         alert("Votre requète n'a pas été pris en compte");
