@@ -1,5 +1,5 @@
 <template>
-  <button @click="newDemand()">
+  <button @click="toggleModal">
     <i class="fas fa-plus"></i> Nouvelle demande
   </button>
   <br />
@@ -45,8 +45,9 @@ export default {
     msg: String,
   },
   methods: {
-    newDemand() {
+    toggleModal() {
       this.$router.push("/form_demand");
+      this.showModal = !this.showModal;
     },
   },
 };

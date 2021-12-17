@@ -1,5 +1,5 @@
 <template>
-  <button @click="newArtisan()">
+  <button @click="toggleModal">
     <i class="fas fa-plus"></i> Nouvel artisan
   </button>
   <br />
@@ -41,14 +41,15 @@ export default {
   },
 
   methods: {
-    newArtisan() {
+    toggleModal() {
       this.$router.push("/form_artisan");
+      this.showModal = !this.showModal;
     },
   },
   async mounted() {
     axios
       .get("http://127.0.0.1:8000/api/artisan")
-      .then((response) => (this.artisans = response.data));
+      .then((response) => (this.artisans = response.data.success));
   },
 };
 </script>

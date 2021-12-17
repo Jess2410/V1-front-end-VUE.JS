@@ -1,64 +1,137 @@
 <template>
-  <input
-    type="text"
-    name="field1"
-    class="field-style field-full"
-    placeholder="Titre"
-  />
+  <form class="form-style-9" @submit="createNewDemand()">
+    <h3>Création d'une nouvelle demande</h3>
+    <ul>
+      <input type="hidden" placeholder="id" />
 
-  <li>
-    <select id="statut" class="field-style field-full">
-      <option value="0">0 - Demande annulée</option>
-      <option value="1" selected>1 - Attente acceptation artisan</option>
-      <option value="2">2 - Attente de réception devis</option>
-      <option value="3">3 - Attente d'approbation devis</option>
-      <option value="4">4 - Attente de devis</option>
-      <option value="5">5 - Travaux à réaliser</option>
-      <option value="6">6 - Travaux réalisés</option>
-      <option value="7">7 - Travaux annulés</option>
-    </select>
-  </li>
+      <fieldset>
+        <legend class="part-title">Information du client</legend>
 
-  <li>
-    <input
-      type="text"
-      name="field4"
-      class="field-style field-split align-left"
-      placeholder="Description"
-    />
+        <input
+          type="radio"
+          id="particulier"
+          name="client"
+          value="Particulier"
+          checked
+        />
+        <label for="particulier">Particulier</label>
 
-    <input
-      type="text"
-      name="field4"
-      class="field-style field-split align-right"
-      placeholder="Adresse des Travaux"
-    />
-  </li>
-  <li>
-    <input
-      type="date"
-      name="field3"
-      class="field-style field-split align-left"
-      placeholder="Date début travaux"
-    />
+        <input type="radio" id="Entreprise" name="client" value="Entreprise" />
+        <label for="entreprise">Entreprise</label>
+        <ul>
+          <li>
+            <input
+              type="text"
+              name="field1"
+              class="field-style field-split align-left"
+              placeholder="Nom"
+            />
+            <input
+              type="text"
+              name="field2 "
+              class="field-style field-split align-right"
+              placeholder="Prénom"
+            />
+          </li>
+          <li>
+            <input
+              type="text"
+              name="field3"
+              class="field-style field-split align-left"
+              placeholder="Raison Sociale"
+            />
+            <input
+              type="text"
+              name="field3"
+              class="field-style field-split align-right"
+              placeholder="Siren"
+            />
+          </li>
+          <li>
+            <input
+              type="text"
+              name="field3"
+              class="field-style field-split align-left"
+              placeholder="Téléphone"
+            />
+            <input
+              type="text"
+              name="field3"
+              class="field-style field-split align-right"
+              placeholder="Adresse"
+            />
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Information de la demande</legend>
+        <li>
+          <input
+            type="text"
+            name="field1"
+            class="field-style field-full"
+            placeholder="Titre"
+          />
+        </li>
+        <li>
+          <select id="statut" class="field-style field-full">
+            <option value="0">0 - Demande annulée</option>
+            <option value="1" selected>1 - Attente acceptation artisan</option>
+            <option value="2">2 - Attente de réception devis</option>
+            <option value="3">3 - Attente d'approbation devis</option>
+            <option value="4">4 - Attente de devis</option>
+            <option value="5">5 - Travaux à réaliser</option>
+            <option value="6">6 - Travaux réalisés</option>
+            <option value="7">7 - Travaux annulés</option>
+          </select>
+        </li>
 
-    <input
-      type="date"
-      name="field4"
-      class="field-style field-split align-right"
-      placeholder="Date fin travaux"
-    />
-  </li>
-  <li>
-    <input type="file" value="Joindre Photos" />
-  </li>
+        <li>
+          <input
+            type="text"
+            name="field4"
+            class="field-style field-split align-left"
+            placeholder="Description"
+          />
 
-  <!-- <input
+          <input
+            type="text"
+            name="field4"
+            class="field-style field-split align-right"
+            placeholder="Adresse des Travaux"
+          />
+        </li>
+        <li>
+          <input
+            type="date"
+            name="field3"
+            class="field-style field-split align-left"
+            placeholder="Date début travaux"
+          />
+
+          <input
+            type="date"
+            name="field4"
+            class="field-style field-split align-right"
+            placeholder="Date fin travaux"
+          />
+        </li>
+        <li>
+          <input type="file" value="Joindre Photos" />
+        </li>
+      </fieldset>
+    </ul>
+
+    <!-- <input
           type="text"
           name="field3"
           class="field-style field-split align-left"
           placeholder="Statut"
         /> -->
+
+    <br />
+    <input type="submit" value="Enregistrer" class="submit" />
+  </form>
 </template>
 
 
