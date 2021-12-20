@@ -1,10 +1,19 @@
 <template>
-  <input
+  <p>à effacer</p>
+  <!-- <input
     type="text"
     name="field1"
     class="field-style field-full"
     placeholder="Titre"
   />
+  <li>
+    <select>
+      <option value="1" selected :key="key" v-for="(el, key) in clients">
+        <p>{{ el.nameRS }}</p>
+        <p>{{ el.lastname }}</p>
+      </option>
+    </select>
+  </li>
 
   <li>
     <select id="statut" class="field-style field-full">
@@ -51,7 +60,7 @@
   </li>
   <li>
     <input type="file" value="Joindre Photos" />
-  </li>
+  </li> -->
 
   <!-- <input
           type="text"
@@ -62,74 +71,53 @@
 </template>
 
 
-
-
 <script>
+import axios from "axios";
 export default {
   name: "NewDemand",
   components: {},
   data: function () {
     return {
-      numeroArtisan: "",
-      raisonSociale: "",
+      // id: "",
+      clients: [],
+      nameRS: "",
       adresse: "",
       siren: "",
       email: "",
-      telephone: "",
-      commentaire: "",
+      tel: "",
+      comment: "",
     };
   },
-  // methods: {
-  //   //------------------------envoi validation formulaire Nouvel Artisan------------------------
+  async mounted() {
+    axios
+      .get("http://127.0.0.1:8000/api/client")
+      .then((response) => (this.clients = response.data));
+  },
+  methods: {
+    //------------------------envoi validation formulaire Nouvelle demande------------------------
+    createNewDemand: async function () {
+      const body = {
+        // id=this.id,
+        nameRS: this.nameRS,
+        adresse: this.adresse,
+        siren: this.siren,
+        email: this.email,
+        tel: this.tel,
+        comment: this.comment,
+      };
 
-  //   CreateClubAcount: async function () {
-  //     const body = {
-  //       nomDuClub: this.nomDuClub,
-  //       nomDuRepresentant: this.nomDuRepresentant,
-  //       emailClub: this.emailClub,
-  //       motDePasseClub: this.motDePasseClub,
-  //       confirmePassClub: this.confirmePassClub,
-  //     };
-  //     console.log(body);
-  //     const response = await axios.post(
-  //       "https://localhost:8000/club/new",
-  //       body
-  //     );
-  //     if (response.data === "Success") {
-  //       const redirect_url = "/";
-  //       this.$router.push(redirect_url);
-  //     }
-  //   },
-  // },
-  // // -----------------------envoi validation formulaire Particulier---------------
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/demandes",
+        body
+      );
 
-  // CreateParticulierAcount: async function () {
-  //   if (this.passParticulier !== this.confirmePassParticulier) {
-  //     console.log("create ok");
-  //     alert("veuillez saisir un mot de passe identique");
-  //   } else {
-  //     const body = {
-  //       nomParticulier: this.nomParticulier,
-  //       emailParticulier: this.emailParticulier,
-  //       passParticulier: this.passParticulier,
-  //       confirmePassParticulier: this.confirmePassParticulier,
-  //       codeParrainage: this.codeParrainage,
-  //     };
-  //     console.log("create ok");
-  //     const response = await axios.post(
-  //       "https://localhost:8000/user/new",
-  //       body
-  //     );
-
-  //     if (response.data === "Success") {
-  //       const redirect_url = "/";
-  //       this.$router.push(redirect_url);
-  //     }
-  //   }
-  // },
-  // myFunction() {
-  //   document.getElementById("myDropdown").classList.toggle("show");
-  // },
+      if (response) {
+        this.$router.push("/");
+      } else {
+        alert("Votre requête n'a pas été prise en compte");
+      }
+    },
+  },
 };
 </script>
 

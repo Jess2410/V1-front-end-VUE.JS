@@ -1,25 +1,96 @@
 <template>
   <div id="mainContainer">
     <div v-show="showModal" class="modal">
-      <form class="form-style-9" @submit="createNewDemand()">
+      <form class="form-style-9" @submit.prevent="createNewDemand()">
         <a class="align-right" href="/">Annuler</a>
         <h3>Création d'une nouvelle demande</h3>
         <ul>
-          <input type="hidden" placeholder="id" />
-          <fieldset>
-            <legend class="part-title">Information du client</legend>
-            <input type="radio" name="client" value="new" checked />
-            <label for="new">Nouveau Client</label>
-            <input type="radio" name="client" value="exist" />
-            <label for="exist">Client existant</label>
+          <input
+            type="text"
+            name="field1"
+            class="field-style field-full"
+            placeholder="Titre"
+            v-model="title"
+          />
+          <li>
+            <select v-model="clients_id">
+              <option
+                value="1"
+                selected
+                :key="key"
+                v-for="(el, key) in clients"
+              >
+                <p>{{ el.nameRS }}</p>
+                <p>{{ el.lastname }}</p>
+              </option>
+            </select>
+          </li>
 
-            <!-- <CompFormNewClient />
-        <CompFormClientExists /> -->
-          </fieldset>
-          <fieldset>
-            <legend>Information de la demande</legend>
-            <NewDemandForm />
-          </fieldset>
+          <li>
+            <select id="statut" class="field-style field-full" v-model="status">
+              <option value="0">0 - Demande annulée</option>
+              <option value="1" selected>
+                1 - Attente acceptation artisan
+              </option>
+              <option value="2">2 - Attente de réception devis</option>
+              <option value="3">3 - Attente d'approbation devis</option>
+              <option value="4">4 - Attente de devis</option>
+              <option value="5">5 - Travaux à réaliser</option>
+              <option value="6">6 - Travaux réalisés</option>
+              <option value="7">7 - Travaux annulés</option>
+            </select>
+          </li>
+          <li>
+            <input
+              type="text"
+              name="field4"
+              class="field-style field-split align-full"
+              placeholder="Adresse des Travaux"
+              v-model="adresse"
+            />
+          </li>
+
+          <li>
+            <input
+              type="date"
+              name="field3"
+              class="field-style field-split align-left"
+              placeholder="Date début travaux"
+              v-model="start"
+            />
+            <input
+              type="date"
+              name="field4"
+              class="field-style field-split align-right"
+              placeholder="Date fin travaux"
+              v-model="end"
+            />
+          </li>
+          <li>
+            <textarea
+              type="text"
+              name="field4"
+              class="field-style field-split align-left"
+              placeholder="Description"
+              v-model="description"
+            />
+          </li>
+          <!-- 
+          <li>
+            <input
+              type="text"
+              name="field4"
+              class="field-style field-split align-left"
+              placeholder="Description"
+            />
+
+      
+     
+
+         
+          <li>
+            <input type="file" value="Joindre Photos" />
+          </li> -->
         </ul>
 
         <br />
@@ -34,32 +105,120 @@
 
 
 <script>
-// import CompFormNewClient from "@/components/CompFormNewClient.vue";
-// import CompFormClientExists from "@/components/CompFormClientExists.vue";
-import NewDemandForm from "@/components/NewDemandForm.vue";
-
+import axios from "axios";
 export default {
   name: "FormDemand",
-  components: {
-    // CompFormNewClient,
-    // CompFormClientExists,
-    NewDemandForm,
-  },
+  components: {},
   data: function () {
     return {
+      // id: "",
+      clients: [],
+      title: "",
+      description: "",
+      adresse: "", //adresse des travaux
+      clients_id: "",
+      start: "",
+      end: "",
+      status: "",
       showModal: true,
+      newCustomer: true,
     };
+  },
+  async mounted() {
+    axios
+      .get("http://127.0.0.1:8000/api/client")
+      .then((response) => (this.clients = response.data));
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
     },
+
+    toggleCustomerExist(param) {
+      if (param === "exist") {
+        this.newCustomer = true;
+      } else {
+        this.newCustomer = false;
+      }
+    },
+    createNewDemand: async function () {
+      const body = {
+        title: this.title,
+        description: this.description,
+        adresse: this.adresse, //adresse des travaux
+        clients_id: this.clients_id,
+        start: this.start,
+        end: this.end,
+        status: this.status,
+      };
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/demande",
+        body
+      );
+
+      if (response) {
+        this.$router.push("/");
+      } else {
+        alert("Votre requête n'a pas été prise en compte");
+      }
+    },
   },
 };
 </script>
 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+fieldset {
+  border-radius: 5px;
+  padding: 20px;
+  border: #0877df 1px solid;
+}
+
+legend {
+  padding: 5px;
+  color: #0877df;
+}
+.submit {
+  border-radius: 5px;
+  box-shadow: #f8f8f8 5px 5px 5px;
+  padding: 1em;
+  background-color: #0877df;
+  color: white;
+  border: 0;
+  font-weight: bold;
+}
+html,
+body {
+  margin: 0;
+}
+
+#mainContainer .modal {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: white;
+  box-shadow: 3px 4px 8px black;
+  border-radius: 5px;
+  padding: 20px;
+  z-index: 10;
+}
+#mainContainer .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.7;
+}
+.align-right {
+  float: right;
+  text-align: right;
+  margin-right: 0;
+}
 /* .form-style-9 {
   max-width: 450px;
   background: #fafafa;
@@ -68,7 +227,7 @@ export default {
   box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
   border: 6px solid #0877df;
-}
+} */
 .form-style-9 ul {
   padding: 0;
   margin: 0;
@@ -99,7 +258,9 @@ export default {
 .form-style-9 ul li input.align-left {
   float: left;
 }
-
+.form-style-9 ul li input.align-right {
+  float: right;
+}
 .form-style-9 ul li textarea {
   width: 100%;
   height: 100px;
@@ -124,7 +285,7 @@ export default {
   background: linear-gradient(to bottom, #2d77a2 5%, #337da8 100%);
   background-color: #0877df;
   border-radius: 5px;
-} */
+}
 fieldset {
   border-radius: 5px;
   padding: 20px;
@@ -143,36 +304,5 @@ legend {
   color: white;
   border: 0;
   font-weight: bold;
-}
-html,
-body {
-  margin: 0;
-}
-
-#mainContainer .modal {
-  position: fixed;
-  top: 10vh;
-  bottom: 10vh;
-  left: 20vw;
-  right: 20vw;
-  background-color: white;
-  box-shadow: 3px 4px 8px black;
-  border-radius: 5px;
-  padding: 20px;
-  z-index: 10;
-}
-#mainContainer .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: black;
-  opacity: 0.7;
-}
-.align-right {
-  float: right;
-  text-align: right;
-  margin-right: 0;
 }
 </style>
