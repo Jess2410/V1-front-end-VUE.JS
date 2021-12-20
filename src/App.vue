@@ -5,11 +5,15 @@
     integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
     crossorigin="anonymous"
   />
-  <div id="nav">
-    <router-link to="/"> Mon Dashboard </router-link> |
-    <!-- <router-link to="/form_artisan">Créer un nouvel artisan</router-link> | -->
-    <router-link to="/list_artisans"> Liste des artisans </router-link>
-  </div>
+  <nav>
+    <div id="nav">
+      <router-link to="/"> Mon Dashboard </router-link> |
+      <!-- <router-link to="/form_artisan">Créer un nouvel artisan</router-link> | -->
+      <router-link to="/list_artisans"> Liste des artisans </router-link> |
+      <router-link to="/list_clients"> Liste des clients </router-link> |
+      <router-link to="/login"> Login </router-link>
+    </div>
+  </nav>
   <router-view />
 </template>
 

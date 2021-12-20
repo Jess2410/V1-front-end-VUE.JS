@@ -1,7 +1,26 @@
 <template>
-  <form class="form-style-9" @submit.prevent="createNewArtisan()">
-    <h3>Création d'un nouvel artisan</h3>
+  <form class="form-style-9" @submit.prevent="createNewClient()">
+    <h3>Création d'un nouveau client</h3>
     <ul>
+      <label for="type">
+        Particulier
+        <input
+          id="type"
+          type="radio"
+          @click="handleTypeChange('particular')"
+          name="type"
+          checked
+        />
+      </label>
+      <label for="type">
+        Entreprise
+        <input
+          id="type"
+          type="radio"
+          @click="handleTypeChange('company')"
+          name="type"
+        />
+      </label>
       <li>
         <!-- <input type="hidden" placeholder="id" /> -->
         <input
@@ -10,11 +29,38 @@
           class="field-style field-split align-left"
           placeholder="Raison Sociale"
           v-model="nameRS"
+          v-if="type === 'company'"
+        />
+        <input
+          type="number"
+          name="siren"
+          class="field-style field-split align-right"
+          placeholder="Siren"
+          v-model="siren"
+          v-if="type === 'company'"
+        />
+      </li>
+      <li>
+        <input
+          type="text"
+          name="lastname"
+          class="field-style field-split align-left"
+          placeholder="Nom"
+          v-model="lastname"
         />
         <input
           type="text"
-          name="adresse"
+          name="firstname"
           class="field-style field-split align-right"
+          placeholder="Prénom"
+          v-model="firstname"
+        />
+      </li>
+      <li>
+        <input
+          type="text"
+          name="adresse"
+          class="field-style field-full align-none"
           placeholder="Adresse"
           v-model="adresse"
         />
@@ -22,26 +68,17 @@
       <li>
         <input
           type="number"
-          name="siren"
+          name="tel"
           class="field-style field-split align-left"
-          placeholder="Siren"
-          v-model="siren"
+          placeholder="Téléphone"
+          v-model="tel"
         />
         <input
-          type="email"
+          type="text"
           name="email"
           class="field-style field-split align-right"
           placeholder="Email"
           v-model="email"
-        />
-      </li>
-      <li>
-        <input
-          type="number"
-          name="tel"
-          class="field-style field-full align-none"
-          placeholder="Téléphone"
-          v-model="tel"
         />
       </li>
       <li>
@@ -65,49 +102,58 @@
 import axios from "axios";
 
 export default {
-  name: "NewArtisan",
+  name: "NewClient",
   components: {},
   data: function () {
     return {
       // id: "",
+      type: "particular",
       nameRS: "",
-      adresse: "",
       siren: "",
-      email: "",
+      lastname: "",
+      firstname: "",
+      adresse: "",
       tel: "",
+      email: "",
       comment: "",
     };
   },
   methods: {
     //------------------------envoi validation formulaire Nouvel Artisan------------------------
-    createNewArtisan: async function () {
+    createNewClient: async function () {
       const body = {
         // id=this.id,
         nameRS: this.nameRS,
-        adresse: this.adresse,
         siren: this.siren,
-        email: this.email,
+        lastname: this.lastname,
+        firstname: this.firstname,
+        adresse: this.adresse,
         tel: this.tel,
+        email: this.email,
         comment: this.comment,
       };
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/artisan",
+        "http://127.0.0.1:8000/api/client",
         body
       );
 
       if (response) {
-        this.$router.push("/list_artisans");
-        window.alert("L'artisan a bien été ajouté.");
+        this.$router.push("/list_clients");
+        window.alert("Le client a bien été ajouté.");
       } else {
         alert("Votre requête n'a pas été prise en compte");
       }
     },
+    handleTypeChange(type) {
+      this.type = type;
+      if (type === "company") {
+        this.textButton = "Ajouter un client Entreprise";
+      } else {
+        this.textButton = "Ajouter un client Particulier";
+      }
+    },
   },
-
-  // myFunction() {
-  //   document.getElementById("myDropdown").classList.toggle("show");
-  // },
 };
 </script>
 
