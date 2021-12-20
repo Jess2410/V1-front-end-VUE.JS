@@ -49,7 +49,7 @@ export default {
   async mounted() {
     axios
       .get("http://127.0.0.1:8000/api/artisan")
-      .then((response) => (this.artisans = response.data.success));
+      .then((response) => (this.artisans = response.data));
   },
 };
 </script>
