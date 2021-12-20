@@ -5,8 +5,7 @@
     </div>
     <div class="part2">
       <form class="form-style-9" @submit="login()">
-        <h4>Bienvenue</h4>
-        <h3>Connectez-vous</h3>
+        <h5>Bienvenue</h5>
         <label for="email">Adresse email :</label>
         <br />
         <input
@@ -16,18 +15,14 @@
           placeholder="John@mail.fr"
           v-model="email"
         />
-        <br />
-        <label for="password">Mot de passe :</label>
+
         <br />
         <input
-          type="password"
-          name="password"
-          class="field-style field-full align-none"
-          placeholder="*********"
-          v-model="password"
+          type="submit"
+          value="Bienvenue >"
+          placeholder="Bienvenue f054"
+          class="submit"
         />
-        <br />
-        <input type="submit" value="Connexion" class="submit" />
       </form>
     </div>
   </div>
@@ -35,49 +30,37 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "LoginArtisan",
 };
 </script>
 
 <style scoped>
-.form-style-9 {
-  max-width: 550px;
-  padding: 30px;
-  margin-left: 10px auto;
-  z-index: 1000;
-  margin-top: 50%;
-}
 input {
   margin: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .submit {
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: #f8f8f8 5px 5px 5px;
   padding: 1em;
-  background-color: #0877df;
+  background: rgb(53, 57, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(53, 57, 251, 1) 1%,
+    rgba(0, 212, 255, 1) 66%
+  );
   color: white;
   border: 0;
   font-weight: bold;
 }
 img {
-  margin-top: 7%;
-  height: 80%;
-  position: absolute;
-  margin-left: 10%;
+  height: 50%;
 }
 
 .flex {
   display: flex;
-  flex-direction: row;
-}
-.part2 {
-  position: absolute;
-  margin-left: 60%;
-}
-placeholder {
-  font-size: 15px;
+  flex-direction: column;
 }
 </style>
