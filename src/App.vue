@@ -11,6 +11,7 @@
       <!-- <router-link to="/form_artisan">Créer un nouvel artisan</router-link> | -->
       <router-link to="/list_artisans"> Liste des artisans </router-link> |
       <router-link to="/list_clients"> Liste des clients </router-link> |
+      <router-link to="/login_artisan"> Login Artisan </router-link> |
       <router-link to="/login"> Login </router-link>
     </div>
   </nav>
