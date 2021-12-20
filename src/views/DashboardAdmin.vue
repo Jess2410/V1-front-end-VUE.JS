@@ -11,19 +11,19 @@
     </div>
   </nav>
   <div class="home">
-    <CompListeArtisans />
+    <CompDashboardAdmin />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
-import CompListeArtisans from "../components/CompListeArtisans.vue";
+import CompDashboardAdmin from "@/components/CompDashboardAdmin.vue";
+// import axios from "axios";
 
 export default {
-  name: "ListArtisans",
+  name: "DashboardAdmin",
   components: {
-    CompListeArtisans,
+    CompDashboardAdmin,
   },
 };
 </script>

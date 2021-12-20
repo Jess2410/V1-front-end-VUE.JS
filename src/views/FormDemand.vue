@@ -28,16 +28,22 @@
 
           <li>
             <select id="statut" class="field-style field-full" v-model="status">
-              <option value="0">0 - Demande annulée</option>
-              <option value="1" selected>
+              <option value="0 - Demande annulée">0 - Demande annulée</option>
+              <option value="1 - Attente acceptation artisan" selected>
                 1 - Attente acceptation artisan
               </option>
-              <option value="2">2 - Attente de réception devis</option>
-              <option value="3">3 - Attente d'approbation devis</option>
-              <option value="4">4 - Attente de devis</option>
-              <option value="5">5 - Travaux à réaliser</option>
-              <option value="6">6 - Travaux réalisés</option>
-              <option value="7">7 - Travaux annulés</option>
+              <option value="2 - Attente de réception devis">
+                2 - Attente de réception devis
+              </option>
+              <option value="3 - Attente d'approbation devis">
+                3 - Attente d'approbation devis
+              </option>
+              <option value="4 - Attente de devis">4 - Attente de devis</option>
+              <option value="5 - Travaux à réaliser">
+                5 - Travaux à réaliser
+              </option>
+              <option value="6 - Travaux réalisés">6 - Travaux réalisés</option>
+              <option value="7 - Travaux annulés">7 - Travaux annulés</option>
             </select>
           </li>
           <li>

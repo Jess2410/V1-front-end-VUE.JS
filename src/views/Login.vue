@@ -5,8 +5,8 @@
     </div>
     <div class="part2">
       <form class="form-style-9" @submit="login()">
-        <h5>Bienvenue</h5>
-        <h4>Connectez-vous</h4>
+        <h4>Bienvenue</h4>
+        <h3>Connectez-vous</h3>
         <label for="email">Adresse email :</label>
         <br />
         <input
@@ -45,7 +45,7 @@ export default {
   padding: 30px;
   margin-left: 10px auto;
   z-index: 1000;
-  margin-top: 10%;
+  margin-top: 50%;
 }
 input {
   margin: 10px;
@@ -63,6 +63,7 @@ input {
   font-weight: bold;
 }
 img {
+  margin-top: 7%;
   height: 80%;
   position: absolute;
   margin-left: 10%;
@@ -75,5 +76,8 @@ img {
 .part2 {
   position: absolute;
   margin-left: 60%;
+}
+placeholder {
+  font-size: 15px;
 }
 </style>

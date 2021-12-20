@@ -40,7 +40,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "DashboardAdmin",
+  name: "CompDashboardAdmin",
   data() {
     return {
       demandes: [],
