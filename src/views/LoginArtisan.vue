@@ -4,7 +4,7 @@
       <img :src="require('../assets/plateologo.png')" />
     </div>
     <div class="part2">
-      <form class="form-style-9" @submit="login()">
+      <form class="form-style-9" @submit.prevent="login()">
         <h5>Bienvenue</h5>
         <label for="email">Adresse email :</label>
         <br />
@@ -24,13 +24,36 @@
           class="submit"
         />
       </form>
+      <p>{{ message }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { apiUrl } from "../config.json";
+
 export default {
   name: "LoginArtisan",
+
+  data() {
+    return {
+      email: "",
+      message: "",
+    };
+  },
+
+  methods: {
+    login() {
+      axios
+        .post(apiUrl + "/magic-link/artisan", {
+          email: this.email,
+        })
+        .then((response) => {
+          this.message = response.data.message;
+        });
+    },
+  },
 };
 </script>
 
