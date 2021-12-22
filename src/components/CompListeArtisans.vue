@@ -26,7 +26,7 @@
         <td>{{ el.tel }}</td>
         <td>{{ el.comment }}</td>
         <td>
-          <button @click="del"><i class="fas fa-trash-alt"></i></button>
+          <button @click="del(el.id)"><i class="fas fa-trash-alt"></i></button>
         </td>
       </tr>
     </tbody>
@@ -49,8 +49,11 @@ export default {
       this.$router.push("/form_artisan");
       this.showModal = !this.showModal;
     },
-    del() {
-      confirm("Êtes-vous sûr de vouloir supprimer cet artisan?");
+    del: async function (id) {
+      if (confirm("Êtes-vous sûr de vouloir supprimer cette Artisan?")) {
+        await axios.delete("http://127.0.0.1:8000/api/artisan/" + id);
+        window.location.reload();
+      }
     },
   },
   async mounted() {

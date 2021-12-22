@@ -1,7 +1,5 @@
 <template>
-  <button @click="toggleModal">
-    <i class="fas fa-plus"></i> Nouvelle demande
-  </button>
+  <button @click="toggleModal">Contact Plateo</button>
 
   <div>
     <h2>Demandes en attente</h2>
@@ -56,11 +54,12 @@ export default {
   },
   methods: {
     accept: async function (id) {
-      const body = { status: "2 - Attente de réception de devis" };
-      await axios.put("http://127.0.0.1:8000/api/demande/" + id, body);
-      console.log(id);
+      if (confirm("Êtes-vous sûr de vouloir accepter cette mission ?")) {
+        const body = { status: "2 - Attente de réception de devis" };
+        await axios.put("http://127.0.0.1:8000/api/demande/" + id, body);
+        window.location.reload();
+      }
     },
-
     //  refus: async function(){
 
     //  }
@@ -96,12 +95,12 @@ export default {
   margin-bottom: 15px;
 }
 .accept {
-  background-color: rgb(6, 117, 30);
+  background-color: rgb(0, 104, 0);
   margin-left: 0;
   width: 35%;
 }
 .refus {
-  background-color: rgb(128, 0, 0);
+  background-color: rgb(192, 1, 1);
   margin-left: 0;
   width: 35%;
 }
