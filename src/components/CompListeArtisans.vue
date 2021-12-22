@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleModal">
+  <button class="newArtisan" @click="toggleModal">
     <i class="fas fa-plus"></i> Nouvel artisan
   </button>
   <br />
@@ -13,6 +13,7 @@
         <th>Email</th>
         <th>Téléphone</th>
         <th>Commentaire</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,9 @@
         <td>{{ el.email }}</td>
         <td>{{ el.tel }}</td>
         <td>{{ el.comment }}</td>
+        <td>
+          <button @click="del"><i class="fas fa-trash-alt"></i></button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -45,6 +49,9 @@ export default {
       this.$router.push("/form_artisan");
       this.showModal = !this.showModal;
     },
+    del() {
+      confirm("Êtes-vous sûr de vouloir supprimer cet artisan?");
+    },
   },
   async mounted() {
     axios
@@ -55,4 +62,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+button {
+  margin: 2px;
+  box-shadow: none;
+  background-color: rgb(199, 23, 23);
+}
+.newArtisan {
+  position: relative;
+  margin-left: 75vw;
+  font-weight: bold;
+  background-color: #0877df;
+}
+</style>
