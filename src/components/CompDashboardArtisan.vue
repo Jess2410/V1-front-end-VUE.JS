@@ -24,8 +24,8 @@
         </div>
       </div>
       <div class="button">
-        <button class="accept">Accepter</button>
-        <button class="refus">Refuser</button>
+        <button class="accept" @click="accept(el.id)">Accepter</button>
+        <button class="refus" @click="refus">Refuser</button>
       </div>
       <details>
         <summary>Détails de la demande</summary>
@@ -48,16 +48,21 @@ export default {
   data() {
     return {
       demandes: [],
+      status: "",
     };
   },
   props: {
     msg: String,
   },
   methods: {
-    // toggleModal() {
-    //   this.$router.push("/form_demand");
-    //   this.showModal = !this.showModal;
-    // },
+    accept: async function (id) {
+      const body = { status: "2 - Attente de réception de devis" };
+      await axios.put("http://127.0.0.1:8000/api/demande/" + id, body);
+      console.log(id);
+    },
+    //  refus: async function(){
+
+    //  }
   },
   async mounted() {
     axios
