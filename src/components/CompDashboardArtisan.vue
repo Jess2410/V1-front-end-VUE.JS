@@ -60,6 +60,7 @@ export default {
       await axios.put("http://127.0.0.1:8000/api/demande/" + id, body);
       console.log(id);
     },
+
     //  refus: async function(){
 
     //  }
@@ -95,12 +96,12 @@ export default {
   margin-bottom: 15px;
 }
 .accept {
-  background-color: red;
+  background-color: rgb(6, 117, 30);
   margin-left: 0;
   width: 35%;
 }
 .refus {
-  background-color: green;
+  background-color: rgb(128, 0, 0);
   margin-left: 0;
   width: 35%;
 }

@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleModal">
+  <button class="newDemand" @click="toggleModal">
     <i class="fas fa-plus"></i> Nouvelle demande
   </button>
   <br />
@@ -16,6 +16,7 @@
         <th>Statut</th>
         <th>Date demande</th>
         <th>Photos</th>
+        <th class="bouton">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,9 @@
 
         <!-- <td>{{ el.photos }}</td> -->
         <td>{{ el.infos }}</td>
+        <td>
+          <button @click="del"><i class="fas fa-trash-alt"></i></button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -54,6 +58,9 @@ export default {
       this.$router.push("/form_demand");
       this.showModal = !this.showModal;
     },
+    del() {
+      confirm("Êtes-vous sûr de vouloir supprimer cette demande?");
+    },
   },
   async mounted() {
     axios
@@ -64,4 +71,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
+<style scoped>
+.newDemand {
+  position: relative;
+  margin-left: 75vw;
+  font-weight: bold;
+  background-color: #0877df;
+}
+button {
+  margin: 2px;
+  box-shadow: none;
+  background-color: rgb(199, 23, 23);
+}
+</style>
