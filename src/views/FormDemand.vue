@@ -1,19 +1,28 @@
 <template>
   <div id="mainContainer">
-    <div v-show="showModal" class="modal">
-      <form class="form-style-9" @submit.prevent="createNewDemand()">
-        <a class="align-right" href="/">Annuler</a>
-        <h3>Création d'une nouvelle demande</h3>
-        <ul>
-          <input
-            type="text"
-            name="field1"
-            class="field-style field-full"
-            placeholder="Titre"
-            v-model="title"
-          />
+    <!-- <div v-show="showModal" class="modal"> -->
+    <form
+      v-show="showModal"
+      id="modal"
+      class="form-style-9"
+      @submit.prevent="createNewDemand()"
+    >
+      <a class="align-right" href="/">Annuler</a>
+      <h3>Création d'une nouvelle demande</h3>
+      <ul>
+        <fieldset>
+          <legend>
+            <input
+              type="text"
+              name="field1"
+              placeholder="Titre de la demande"
+              class="field-style field-full"
+              v-model="title"
+            />
+          </legend>
           <li>
-            <select v-model="clients_id">
+            <select class="field-style field-full" v-model="clients_id">
+              <option value="">Attribuée à :</option>
               <option
                 value="1"
                 selected
@@ -27,9 +36,9 @@
           </li>
 
           <li>
-            <select id="statut" class="field-style field-full" v-model="status">
-              <option value="0 - Demande annulée">0 - Demande annulée</option>
-              <option value="1 - Attente acceptation artisan" selected>
+            <select id="statut" v-model="status" class="field-style field-full">
+              <option value="">Choix du statut</option>
+              <option selected value="1 - Attente acceptation artisan">
                 1 - Attente acceptation artisan
               </option>
               <option value="2 - Attente de réception devis">
@@ -44,13 +53,14 @@
               </option>
               <option value="6 - Travaux réalisés">6 - Travaux réalisés</option>
               <option value="7 - Travaux annulés">7 - Travaux annulés</option>
+              <option value="8 - Demande annulée">8 - Demande annulée</option>
             </select>
           </li>
           <li>
             <input
               type="text"
               name="field4"
-              class="field-style field-split align-full"
+              class="field-style field-full"
               placeholder="Adresse des Travaux"
               v-model="adresse"
             />
@@ -76,7 +86,7 @@
             <textarea
               type="text"
               name="field4"
-              class="field-style field-split align-left"
+              class="field-style field-full"
               placeholder="Description"
               v-model="description"
             />
@@ -97,15 +107,16 @@
           <li>
             <input type="file" value="Joindre Photos" />
           </li> -->
-        </ul>
+        </fieldset>
+      </ul>
 
-        <br />
+      <br />
 
-        <input type="submit" value="Enregistrer" class="submit" />
-      </form>
-    </div>
-    <div v-show="showModal" class="overlay"></div>
+      <input type="submit" value="Enregistrer" class="submit" />
+    </form>
   </div>
+  <div v-show="showModal" class="overlay"></div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -198,10 +209,10 @@ body {
 
 #mainContainer .modal {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
+  top: 30px;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
   background-color: white;
   box-shadow: 3px 4px 8px black;
   border-radius: 5px;
@@ -222,15 +233,15 @@ body {
   text-align: right;
   margin-right: 0;
 }
-/* .form-style-9 {
+.form-style-9 {
   max-width: 450px;
   background: #fafafa;
   padding: 30px;
-  margin: 50px auto;
+  margin: 10px auto;
   box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
   border: 6px solid #0877df;
-} */
+}
 .form-style-9 ul {
   padding: 0;
   margin: 0;
@@ -307,5 +318,68 @@ legend {
   color: white;
   border: 0;
   font-weight: bold;
+}
+.form-style-9 {
+  max-width: 550px;
+  padding: 30px;
+  margin: 10px auto;
+}
+.form-style-9 ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.form-style-9 ul li {
+  display: block;
+  margin-bottom: 10px;
+  min-height: 35px;
+}
+.form-style-9 ul li .field-style {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 8px;
+  outline: none;
+}
+.form-style-9 ul li .field-style:focus {
+  box-shadow: 0 0 5px #b0cfe0;
+  border: 1px solid #b0cfe0;
+}
+.form-style-9 ul li .field-split {
+  width: 49%;
+}
+.form-style-9 ul li .field-full {
+  width: 100%;
+}
+.form-style-9 ul li input.align-left {
+  float: left;
+}
+.form-style-9 ul li input.align-right {
+  float: right;
+}
+.form-style-9 ul li textarea {
+  width: 100%;
+  height: 100px;
+}
+.form-style-9 ul li input[type="button"],
+.form-style-9 ul li input[type="submit"] {
+  -moz-box-shadow: inset 0px 1px 0px 0px #3985b1;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #3985b1;
+  box-shadow: inset 0px 1px 0px 0px #3985b1;
+  background-color: #0877df;
+  border: 1px solid #17445e;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 8px 18px;
+  text-decoration: none;
+  font: 12px Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+}
+.form-style-9 ul li input[type="button"]:hover,
+.form-style-9 ul li input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #2d77a2 5%, #337da8 100%);
+  background-color: #0877df;
+  border-radius: 5px;
 }
 </style>

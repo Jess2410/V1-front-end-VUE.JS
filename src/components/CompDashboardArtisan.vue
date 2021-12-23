@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleModal">Contact Plateo</button>
+  <button>Contact Plateo</button>
 
   <div>
     <h2>Demandes en attente</h2>
@@ -21,10 +21,17 @@
           <p>{{ el.status }}</p>
         </div>
       </div>
-      <div class="button">
+      <div
+        class="button"
+        id="buttons"
+        v-if="el.status === '1 - Attente acceptation artisan'"
+      >
         <button class="accept" @click="accept(el.id)">Accepter</button>
         <button class="refus" @click="refus">Refuser</button>
       </div>
+      <button v-else-if="el.status === '2 - Attente de réception de devis'">
+        Télécharger devis
+      </button>
       <details>
         <summary>Détails de la demande</summary>
         <p>{{ el.nameRS }}</p>
@@ -60,14 +67,18 @@ export default {
         window.location.reload();
       }
     },
+
+    // }
     //  refus: async function(){
 
     //  }
   },
+
   async mounted() {
     axios
       .get("http://127.0.0.1:8000/api/demande")
       .then((response) => (this.demandes = response.data));
+    console.log(this.status);
   },
 };
 </script>
@@ -131,5 +142,8 @@ h2 {
 }
 span {
   font-weight: bold;
+}
+button {
+  box-shadow: none;
 }
 </style>
