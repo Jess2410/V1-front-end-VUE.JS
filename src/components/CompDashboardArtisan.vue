@@ -15,7 +15,6 @@
             <i class="far fa-star"></i> Demande n°<span>{{ el.id }}</span>
           </p>
           <p>{{ el.created_at }}</p>
-          <p>{{ el.status }}</p>
         </div>
       </div>
       <div
