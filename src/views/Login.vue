@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div class="part">
-      <img :src="require('../assets/plateologo.png')" />
+      <img :src="require('../assets/Logoquadri.png')" />
     </div>
     <div class="part2">
       <form class="form-style-9" @submit="login()">
@@ -57,16 +57,16 @@ input {
   border-radius: 5px;
   box-shadow: #f8f8f8 5px 5px 5px;
   padding: 1em;
-  background-color: #0877df;
+  background-color: #2b90d9;
   color: white;
   border: 0;
   font-weight: bold;
 }
 img {
-  margin-top: 7%;
-  height: 80%;
+  margin-top: 15%;
+  height: 45%;
   position: absolute;
-  margin-left: 10%;
+  margin-left: 8%;
 }
 
 .flex {
