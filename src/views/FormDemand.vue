@@ -18,6 +18,7 @@
               placeholder="Titre de la demande"
               class="field-style field-full"
               v-model="title"
+              style="text-transform: uppercase"
             />
           </legend>
           <li>
@@ -91,22 +92,6 @@
               v-model="description"
             />
           </li>
-          <!-- 
-          <li>
-            <input
-              type="text"
-              name="field4"
-              class="field-style field-split align-left"
-              placeholder="Description"
-            />
-
-      
-     
-
-         
-          <li>
-            <input type="file" value="Joindre Photos" />
-          </li> -->
         </fieldset>
       </ul>
 
@@ -186,18 +171,18 @@ export default {
 fieldset {
   border-radius: 5px;
   padding: 20px;
-  border: #0877df 1px solid;
+  border: #083d77 1px solid;
 }
 
 legend {
   padding: 5px;
-  color: #0877df;
+  color: #083d77;
 }
 .submit {
   border-radius: 5px;
   box-shadow: #f8f8f8 5px 5px 5px;
   padding: 1em;
-  background-color: #0877df;
+  background-color: #2b90d9;
   color: white;
   border: 0;
   font-weight: bold;
@@ -240,7 +225,7 @@ body {
   margin: 10px auto;
   box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
-  border: 6px solid #0877df;
+  border: 6px solid #2b90d9;
 }
 .form-style-9 ul {
   padding: 0;
@@ -284,8 +269,8 @@ body {
   -moz-box-shadow: inset 0px 1px 0px 0px #3985b1;
   -webkit-box-shadow: inset 0px 1px 0px 0px #3985b1;
   box-shadow: inset 0px 1px 0px 0px #3985b1;
-  background-color: #0877df;
-  border: 1px solid #17445e;
+  background-color: #2b90d9;
+  border: 1px solid #083d77;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
@@ -297,24 +282,24 @@ body {
 .form-style-9 ul li input[type="button"]:hover,
 .form-style-9 ul li input[type="submit"]:hover {
   background: linear-gradient(to bottom, #2d77a2 5%, #337da8 100%);
-  background-color: #0877df;
+  background-color: #2b90d9;
   border-radius: 5px;
 }
 fieldset {
   border-radius: 5px;
   padding: 20px;
-  border: #0877df 1px solid;
+  border: #2b90d9 1px solid;
 }
 
 legend {
   padding: 5px;
-  color: #0877df;
+  color: #2b90d9;
 }
 .submit {
   border-radius: 5px;
   box-shadow: #f8f8f8 5px 5px 5px;
   padding: 1em;
-  background-color: #0877df;
+  background-color: #2b90d9;
   color: white;
   border: 0;
   font-weight: bold;
@@ -366,8 +351,8 @@ legend {
   -moz-box-shadow: inset 0px 1px 0px 0px #3985b1;
   -webkit-box-shadow: inset 0px 1px 0px 0px #3985b1;
   box-shadow: inset 0px 1px 0px 0px #3985b1;
-  background-color: #0877df;
-  border: 1px solid #17445e;
+  background-color: #2b90d9;
+  border: 1px solid #083d77;
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
@@ -379,7 +364,10 @@ legend {
 .form-style-9 ul li input[type="button"]:hover,
 .form-style-9 ul li input[type="submit"]:hover {
   background: linear-gradient(to bottom, #2d77a2 5%, #337da8 100%);
-  background-color: #0877df;
+  background-color: #2b90d9;
   border-radius: 5px;
+}
+h3 {
+  color: #2b90d9;
 }
 </style>

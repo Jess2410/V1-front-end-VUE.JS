@@ -7,9 +7,6 @@
       <h3>{{ el.title }}</h3>
       <p>{{ el.status }}</p>
       <div class="part">
-        <div class="infos1">
-          <!-- <img :src="require('../assets/plateologo.png')" /> -->
-        </div>
         <div class="infos">
           <p>
             <i class="fas fa-map-marker-alt"></i> <span>{{ el.adresse }}</span>
@@ -33,13 +30,16 @@
         Télécharger devis
       </button>
       <details>
-        <summary>Détails de la demande</summary>
-        <p>{{ el.nameRS }}</p>
-        <p>{{ el.lastname }}</p>
-        <p>{{ el.description }}</p>
-        <p>{{ el.start }}</p>
-        <p>{{ el.end }}</p>
-
+        <fieldset>
+          <legend>
+            <summary>Détails de la demande</summary>
+          </legend>
+          <p>{{ el.nameRS }}</p>
+          <p>{{ el.lastname }}</p>
+          <p>{{ el.description }}</p>
+          <p>{{ el.start }}</p>
+          <p>{{ el.end }}</p>
+        </fieldset>
         <!-- <p>Photos</p> -->
       </details>
     </div>
@@ -85,6 +85,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to pis component only -->
 <style scoped>
+template {
+  background-color: #f8f8fb;
+}
 .cardContainer {
   background: rgb(53, 57, 251);
   background: radial-gradient(
@@ -96,6 +99,7 @@ export default {
   color: white;
   padding: 10px;
   margin: 15px;
+  box-shadow: grey 0px 2px 2px;
 }
 .button {
   display: flex;
@@ -118,7 +122,9 @@ export default {
 .infos {
   font-weight: 100;
   text-align: left;
-  margin-left: 30%;
+  margin-left: 10%;
+  font-size: 0.8em;
+  font-weight: 50;
 }
 h3 {
   letter-spacing: 1px;
@@ -145,5 +151,10 @@ span {
 }
 button {
   box-shadow: none;
+}
+fieldset {
+  color: white;
+  border-color: white;
+  border-radius: 5px;
 }
 </style>

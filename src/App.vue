@@ -46,13 +46,13 @@ tbody {
   border-radius: 5px;
   padding: 5px;
   border-collapse: inherit;
-  background-color: rgb(204, 200, 200);
+  background-color: #f8f8f8;
 }
 
 thead,
 tfoot {
-  background-color: #f8f8f8;
-  color: #4c535a;
+  background-color: #dfdfdf;
+  color: #2c3e50;
   font-weight: 100;
 }
 
@@ -69,7 +69,6 @@ table {
 } */
 placeholder {
   font-size: 20 px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>

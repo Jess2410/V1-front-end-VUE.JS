@@ -1,6 +1,7 @@
 <template>
   <nav>
     <div id="nav">
+      <img :src="require('../assets/plateologo.png')" />
       <router-link to="/"> Mon Dashboard </router-link> |
       <!-- <router-link to="/form_artisan">Créer un nouvel artisan</router-link> | -->
       <router-link to="/list_artisans"> Liste des artisans </router-link> |
@@ -27,3 +28,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+img {
+  position: absolute;
+  margin: 0;
+  height: 20%;
+  left: 10vw;
+  top: -3.5vh;
+}
+</style>
