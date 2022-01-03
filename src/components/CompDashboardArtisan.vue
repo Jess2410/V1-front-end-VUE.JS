@@ -66,11 +66,6 @@ export default {
         window.location.reload();
       }
     },
-
-    // }
-    //  refus: async function(){
-
-    //  }
   },
 
   async mounted() {
